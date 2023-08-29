@@ -46,13 +46,25 @@ export const login = async (req, res) => {
     const { password, ...others } = user._doc;
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
-      process.env.jwt_sec
+      process.env.jwt_sec,
+      { expiresIn: "1d" }
     );
 
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    res
+      .clearCookie("access_token", { sameSite: "none", secure: true })
+      .status(200)
+      .json("You've logged out successfully");
   } catch (err) {
     res.status(500).json(err);
   }
