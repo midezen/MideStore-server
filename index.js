@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/Auth.js";
 import userRoute from "./routes/User.js";
+import productRoute from "./routes/Product.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ mongoose
 
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
+app.use("/api/product", productRoute);
 
 app.listen(8000, () => {
   console.log("server is running");
