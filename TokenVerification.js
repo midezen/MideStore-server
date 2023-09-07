@@ -6,7 +6,7 @@ dotenv.config();
 export const verifyToken = async (req, res, next) => {
   try {
     const token = req.cookies.access_token;
-    !token && res.status(401).json("You're not authorized");
+    !token && res.status(401).json("You're not authenticated");
 
     jwt.verify(token, process.env.jwt_sec, (err, userInfo) => {
       err && res.status(401).json("invalid token");
