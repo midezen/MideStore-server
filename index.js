@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/Auth.js";
 import userRoute from "./routes/User.js";
 import productRoute from "./routes/Product.js";
+import cartRoute from "./routes/Cart.js";
+import orderRoute from "./routes/Order.js";
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ mongoose
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/order", orderRoute);
 
 app.listen(8000, () => {
   console.log("server is running");
